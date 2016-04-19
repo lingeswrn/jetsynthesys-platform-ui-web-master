@@ -1,0 +1,4 @@
+--watch
+--require babel-core/register
+--ui bdd
+--reporter spec

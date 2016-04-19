@@ -1,0 +1,28 @@
+@import "nib"
+
+// NOTE: `~` resolves to `<root>/node_modules/`
+@import "~normalize.css/normalize.css"
+
+$jet_blue = #35C3F1
+
+// NOTE: boilerplate code, work in progress
+
+body
+    min-height 100%
+    min-width 100%
+
+    padding 30px
+
+    background white
+    color black
+
+    &[data-loaded="true"]
+        #splashscreen
+            display none
+
+*
+    box-sizing border-box
+
+a
+    text-decoration none
+    color $jet_blue

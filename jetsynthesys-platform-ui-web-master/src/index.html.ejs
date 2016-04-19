@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width"/>
+
+    <title><%= title %></title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes" class="homescreen setting ios"/>
+    <meta name="apple-mobile-web-app-title" content="<%= title %>" class="homescreen setting ios"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" class="homescreen setting ios"/>
+    <meta name="format-detection" content="telephone=no" class="homescreen setting ios"/>
+    <meta name="mobile-web-app-capable" content="yes" class="homescreen setting android"/>
+    <meta name="theme-color" content="#000000" class="homescreen setting android"/>
+    <meta name="application-name" content="<%= title %>" class="homescreen setting windows"/>
+    <meta name="msapplication-TileColor" content="#000000" class="homescreen setting windows"/>
+
+    <link rel="manifest" href="manifest.json"/>
+
+    <link rel="apple-touch-icon" href="/assets/meta/icon-32x32.png" class="homescreen icon ios"/>
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/meta/icon-57x57.png" class="homescreen icon ios x1_0_iphone"/>
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/meta/icon-76x76.png" class="homescreen icon ios x1_0_ipad"/>
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/meta/icon-120x120.png" class="homescreen icon ios x2_0_iphone"/>
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/meta/icon-152x152.png" class="homescreen icon ios x2_0_ipad"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/meta/icon-180x180.png" class="homescreen icon ios x2_0_iphone6"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/meta/icon-180x180.png" class="homescreen icon ios x3_0_iphone6plus"/>
+
+    <link rel="icon" href="/assets/meta/icon-32x32.png" class="homescreen icon android"/>
+    <link rel="icon" sizes="36x36" href="/assets/meta/icon-36x36.png" class="homescreen icon android x0_5"/>
+    <link rel="icon" sizes="48x48" href="/assets/meta/icon-48x48.png" class="homescreen icon android x1_0"/>
+    <link rel="icon" sizes="72x72" href="/assets/meta/icon-72x72.png" class="homescreen icon android x1_5"/>
+    <link rel="icon" sizes="96x96" href="/assets/meta/icon-96x96.png" class="homescreen icon android x2_0"/>
+    <link rel="icon" sizes="144x144" href="/assets/meta/icon-144x144.png" class="homescreen icon android x3_0"/>
+    <link rel="icon" sizes="192x192" href="/assets/meta/icon-192x192.png" class="homescreen icon android x4_0"/>
+
+    <meta name="msapplication-TileImage" content="/assets/meta/icon-144x144.png" class="homescreen icon windows x1_0"/>
+    <meta name="msapplication-square70x70logo" content="/assets/meta/icon-70x70.png" class="homescreen icon windows x1_0"/>
+    <meta name="msapplication-square150x150logo" content="/assets/meta/icon-150x150.png" class="homescreen icon windows x1_0"/>
+    <meta name="msapplication-square310x310logo" content="/assets/meta/icon-310x310.png" class="homescreen icon windows x1_0"/>
+    <meta name="msapplication-wide310x150logo" content="/assets/meta/icon-310x150.png" class="homescreen icon windows x1_0"/>
+
+    <link rel="apple-touch-startup-image" sizes="320x460" href="/assets/meta/splashscreen-320x460.png" media="(orientation: portrait) and (device-width: 320px)" class="homescreen splashscreen ios x1_0_iphone portrait"/>
+    <link rel="apple-touch-startup-image" sizes="640x920" href="/assets/meta/splashscreen-640x920.png" media="(orientation: portrait) and (device-width: 640px) and (device-height: 460px) and (-webkit-device-pixel-ratio: 2" class="homescreen splashscreen ios x2_0_iphone portrait"/>
+    <link rel="apple-touch-startup-image" sizes="640x1096" href="/assets/meta/splashscreen-640x1096.png" media="(orientation: portrait) and (device-width: 640px) and (device-height: 548px) and (-webkit-device-pixel-ratio: 2" class="homescreen splashscreen ios x2_0_iphone5 portrait"/>
+    <link rel="apple-touch-startup-image" sizes="750x1294" href="/assets/meta/splashscreen-750x1294.png" media="(orientation: portrait) and (device-width: 375px) and (device-height: 647px) and (-webkit-device-pixel-ratio: 3" class="homescreen splashscreen ios x2_0_iphone6 portrait"/>
+    <link rel="apple-touch-startup-image" sizes="1242x2148" href="/assets/meta/splashscreen-1242x2148.png" media="(orientation: portrait) and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3" class="homescreen splashscreen ios x3_0_iphone6plus portrait"/>
+
+    <!-- css -->
+    <link href="<%- webpack.assetsByChunkName.bundle.find(v => v.includes('.css')) %>" rel="stylesheet" />
+
+    <!-- isomorphic: initial data state -->
+    <script type="application/javascript">
+        window.__INITIAL_STATE__ = <%- initialState %>
+    </script>
+
+</head>
+<body data-loaded="<%= engine !== 'client' %>" data-source="<%= engine %>">
+
+    <!-- pre-load -->
+    <div id="splashscreen" class="loader">
+        <style>
+            #splashscreen {
+                position: fixed;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                background: #35C3F1;
+                color: white;
+            }
+        </style>
+    </div>
+
+    <!-- post-load -->
+    <div id="root"><%- initialHTML %></div>
+
+    <!-- js -->
+    <script src="<%- webpack.assetsByChunkName.vendor %>"></script>
+    <script src="<%- webpack.assetsByChunkName.bundle.find(v => v.includes('.js')) %>"></script>
+
+</body>
+</html>
